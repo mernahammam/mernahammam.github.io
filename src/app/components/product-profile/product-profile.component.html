@@ -1,0 +1,19 @@
+<h2 class="mt-5">Product Details</h2>
+
+<div *ngIf="product">
+  <img src="{{ product.image }}" style="width: 200px;">
+  <h3>Title: {{ product.title }}</h3>
+  <h4>Price: {{ product.price | currency:"EGP" }}</h4>
+  <p>Description: {{ product.description }}</p>
+
+  <div *ngIf="inCart">
+    <button type="button" class="btn btn-sm btn-outline-secondary" (click)="decreaseQuantity(product)">-</button>
+     {{ product.quantity }}
+    <button type="button" class="btn btn-sm btn-outline-secondary" (click)="increaseQuantity(product)">+</button>
+  </div>
+  <div *ngIf="!inCart">
+    <button type="button" class="btn btn-sm btn-outline-secondary" (click)="addProductToCart(product)">Add To Cart</button>
+  </div>
+</div>
+
+

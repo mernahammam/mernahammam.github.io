@@ -1,0 +1,31 @@
+<div>
+  <p class="display-4 mb-4">
+    Checkout Page
+  </p>
+  <div class="row">
+    <table class="table">
+      <tr>
+        <td>#</td>
+        <td>Name</td>
+        <td>Price</td>
+        <td>Quantity</td>
+        <td>Total</td>
+        <td>Actions</td>
+      </tr>
+      <tr *ngFor="let product of items; let i = index">
+        <td><img class="align-self-center" src="{{ product.image }}" style="width: 75px;"></td>
+        <td><h5 class="mt-0 mb-1">{{ product.title }}</h5>
+          {{ product.description }}</td>
+        <td>{{ product.price | currency:"EGP" }}</td>
+        <td><button type="button" class="btn btn-sm btn-outline-secondary" (click)="decreaseQuantity(product)">-</button> {{ product.quantity }} <button type="button" class="btn btn-sm btn-outline-secondary" (click)="increaseQuantity(product)">+</button></td>
+        <td>{{ product.price * product.quantity }}</td>
+        <td><button type="button" class="btn btn-sm btn-outline-danger" (click)="removeFromCart(i)">Remove</button></td>
+      </tr>
+      <tr>
+        <td colspan="4">Grand Total</td>
+        <td colspan="2"><p class="alert alert-primary">{{ checkoutTotal | currency:"EGP" }}</p></td>
+      </tr>
+    </table>
+    </div>
+    <a class="btn btn-primary mb-5 mt-5" [routerLink]="['/complete-order']">Complete Order</a>
+  </div>
